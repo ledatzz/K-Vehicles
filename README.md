@@ -25,11 +25,11 @@ We present K-Vehicles, a new dataset for vehicle detection in aerial imagery. It
 
 K-Vehicles dataset consists of 15,168 cropped images, each with a fixed resolution of 1024x1024 pixels. These patches were obtained from aerial images captured under diverse conditions. The dataset is split into training, validation, and test subsets following an 80-10-10 proportion, resulting in 12,134 images for training, and 1,517 images for both validation and test sets. Annotations were generated in YOLO format, with each object instance described by its class and normalized bounding box coordinates. In total, the dataset includes 63,233 annotated instances, distributed as follows: 50,993 in the training set, 5,961 in the validation set, and 6,279 in the test set. The summary of K-Vehicles is as follows:
 
-| Split        | # Images   | # Instances   |
-|----------------|----------|----------------|
-| Train       | 12,134   | 50,993   |
-| Valid   | 1,517  | 5,961   |
-| Test           | 1,517  | 6,279   |
+| Split        | # Images   | 
+|----------------|----------|
+| Train       | 12,134   |
+| Valid   | 1,517  |
+| Test           | 1,517  |
 
 ## Dataset download
 
